@@ -107,7 +107,7 @@ const WalletTrackerPage = ({ theme, walletTrackerFuturesData, setFuturesTableLoa
                             <Button styles={{marginTop: '0'}} text='Add new record' onClick={() => setTransactionsUploadForm(false)} />
                             <Button onClick={deleteRecordsTransactions} styles={{marginTop: '0'}} text='Delete record' />
                         </div>
-                        <h1 className='walletTracker__table--text'> TRANSACTIONS </h1>
+                        <h1 className='walletTracker__table--text'> SPOT </h1>
 
                     </div>
                     <TransactionsTable theme={theme} averageProfit={walletTrackerTransactionData.averageProfitPerOneTransaction} setEditData={setEditTransactionData} setHiddenUpdateForm={setTransactionsUpdateForm} setNodeArr={setNodeArrTransactions} />
@@ -148,13 +148,13 @@ const WalletTrackerPage = ({ theme, walletTrackerFuturesData, setFuturesTableLoa
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Transactions</th>
+                        <th>SPOT</th>
                         <th>Futures</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td className='walletTracker__stats--title'>Average profit per one movement:</td>
+                        <td className='walletTracker__stats--title'>Average profit per one transaction:</td>
                         <td>{walletTrackerTransactionData.averageProfitPerOneTransaction}$</td>
                         <td>{walletTrackerFuturesData.averageProfitPerOneTransaction}$</td>
                     </tr>
@@ -242,7 +242,7 @@ const WalletTrackerPage = ({ theme, walletTrackerFuturesData, setFuturesTableLoa
 
             <div className='walletTracker__charts'>
                     <div className='walletTracker__charts--transactions'>
-                        <h1 className='walletTracker__charts--header'> Transactions </h1>
+                        <h1 className='walletTracker__charts--header'> Spot </h1>
 
                         <div className='walletTracker__charts--box'>
                             <div className='walletTracker__charts--container'>
@@ -252,7 +252,7 @@ const WalletTrackerPage = ({ theme, walletTrackerFuturesData, setFuturesTableLoa
                                     <LineChart tickMark='$' header='monthly profits' width={300} height={300} times={walletTrackerTransactionData.monthlyProfitChartdata.profitTimes} values={walletTrackerTransactionData.monthlyProfitChartdata.profitValues} chartColor='#f39c12' />
                                 
                                 :
-                                <h1 className='walletTracker__charts--alternativeText'> Add some transactions to see chart </h1>
+                                <h1 className='walletTracker__charts--alternativeText'> Add some spot transactions to see chart </h1>
                             }
                             </div>
                         <div className='walletTracker__charts--container'>
@@ -262,7 +262,7 @@ const WalletTrackerPage = ({ theme, walletTrackerFuturesData, setFuturesTableLoa
                                     <LineChart tickMark='%' beginAtZero={true}  header='efficiency' width={300} height={300} times={walletTrackerTransactionData.monthlyProfitChartdata.efficiencyTimes} values={walletTrackerTransactionData.monthlyProfitChartdata.efficiencyValues} chartColor='#7ed6df' />
                                 
                                 :
-                                <h1 className='walletTracker__charts--alternativeText'> Add some transactions to see chart </h1>
+                                <h1 className='walletTracker__charts--alternativeText'> Add some spot transactions to see chart </h1>
                             }
                         </div>
                         </div>
@@ -279,7 +279,7 @@ const WalletTrackerPage = ({ theme, walletTrackerFuturesData, setFuturesTableLoa
                                 <LineChart tickMark='$' header='monthly profits' width={300} height={300} times={walletTrackerFuturesData.monthlyProfitChartdata.profitTimes} values={walletTrackerFuturesData.monthlyProfitChartdata.profitValues} chartColor= '#f39c12'/>
                             
                             :
-                            <h1 className='walletTracker__charts--alternativeText'> Add some futures to see chart </h1>
+                            <h1 className='walletTracker__charts--alternativeText'> Add some futures transactions to see chart </h1>
                         }
                     </div>
                     <div className='walletTracker__charts--container'>
@@ -289,7 +289,7 @@ const WalletTrackerPage = ({ theme, walletTrackerFuturesData, setFuturesTableLoa
                                 <LineChart tickMark='%' beginAtZero={true} header='efficiency' width={300} height={300} times={walletTrackerFuturesData.monthlyProfitChartdata.efficiencyTimes} values={walletTrackerFuturesData.monthlyProfitChartdata.efficiencyValues} chartColor= '#7ed6df' />
                             
                             :
-                            <h1 className='walletTracker__charts--alternativeText'> Add some futures to see chart </h1>
+                            <h1 className='walletTracker__charts--alternativeText'> Add some futures transactions to see chart </h1>
                         }
                     </div>
                     </div>
