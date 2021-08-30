@@ -132,7 +132,7 @@ export function* userTradeUpload({payload: {id, typeOfTrade, buyCurrency, buyAmo
         let tradeProfit = null;
         let sellCurrencyCourse = null;
         if (typeOfTrade === 'Deposit' || typeOfTrade === 'Mining') {     
-             courseData = yield fetchingData(buyCurrency);
+             courseData = yield fetchingData(buyCurrency, 'usd');
              if (Object.keys(courseData).length === 0) {
                  throw Error;
              }
@@ -149,7 +149,7 @@ export function* userTradeUpload({payload: {id, typeOfTrade, buyCurrency, buyAmo
                 }
                 
                 else {
-                        courseData = yield fetchingData(`${buyCurrency},${sellCurrency}`);
+                        courseData = yield fetchingData(`${buyCurrency},${sellCurrency}`, 'usd');
                         if (Object.keys(courseData).length < 2) {
                             throw Error;
                         }
@@ -158,7 +158,7 @@ export function* userTradeUpload({payload: {id, typeOfTrade, buyCurrency, buyAmo
                         tradeProfit = (Math.round(((course*buyAmount) - (sellCurrencyCourse*sellAmount))*100)) / 100;
                 }
             } else if (typeOfTrade === 'Withdrawal') {
-            courseData = yield fetchingData(sellCurrency);
+            courseData = yield fetchingData(sellCurrency, 'usd');
             course = yield Object.values(courseData)[0].usd;
         }
 
@@ -229,13 +229,15 @@ export function* deleteUserTrade({ payload: { id, records }}) {
 };
 
 export function* userTradeUpdate({payload: {id, objectID, typeOfTrade, buyCurrency, buyAmount, sellCurrency, sellAmount, comment, date}}) {
+
     try {
         let courseData;
         let course = null;
         let tradeProfit = null;
         let sellCurrencyCourse = null;
         if (typeOfTrade === 'Deposit' || typeOfTrade === 'Mining') {     
-             courseData = yield fetchingData(buyCurrency);
+             courseData = yield fetchingData(buyCurrency, 'usd');
+ 
              if (Object.keys(courseData).length === 0) {
                  throw Error;
              }
@@ -252,7 +254,7 @@ export function* userTradeUpdate({payload: {id, objectID, typeOfTrade, buyCurren
                 }
                 
                 else {
-                        courseData = yield fetchingData(`${buyCurrency},${sellCurrency}`);
+                        courseData = yield fetchingData(`${buyCurrency},${sellCurrency}`, 'usd');
                         if (Object.keys(courseData).length < 2) {
                             throw Error;
                         }
@@ -261,7 +263,7 @@ export function* userTradeUpdate({payload: {id, objectID, typeOfTrade, buyCurren
                         tradeProfit = (Math.round(((course*buyAmount) - (sellCurrencyCourse*sellAmount))*100)) / 100;
                 }
             } else if (typeOfTrade === 'Withdrawal') {
-            courseData = yield fetchingData(sellCurrency);
+            courseData = yield fetchingData(sellCurrency, 'usd');
             course = yield Object.values(courseData)[0].usd;
         }
 

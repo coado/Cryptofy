@@ -114,7 +114,8 @@ import fetchingData from './fetchingData';
                     amount: buyAmount,
                     prevValue: buyAmount*el.course,
                     prevCourse: el.course,
-                    tradeProfit: 0
+                    tradeProfit: 0,
+                    to: 'usd'
 
                 };
             }
@@ -137,7 +138,6 @@ import fetchingData from './fetchingData';
             previousWalletValue -= sellAmount*el.course;
         } 
     });
-
     if (Object.keys(wallet).length === 0) {
         return {
             wallet: null,
@@ -268,4 +268,3 @@ import fetchingData from './fetchingData';
 };
 
 export default calculatingWalletData;
-
