@@ -22,7 +22,7 @@ import { calculatingTransactionData, calculatingFutureData } from '../../utils/c
 export function* signUp({payload: {email, password, confirmPassword}}) {
     try {
     
-        const res = yield axios.post('/signup', {
+        const res = yield axios.post('https://cryptofy-react.herokuapp.com/signup', {
             email,
             password,
             confirmPassword
@@ -53,7 +53,7 @@ export function* signUp({payload: {email, password, confirmPassword}}) {
 
 export function* signIn({payload: {email, password}}) {
     try {
-        const res = yield axios.post('/signin', {
+        const res = yield axios.post('https://cryptofy-react.herokuapp.com/signin', {
             email,
             password
         });
@@ -84,7 +84,7 @@ export function* signIn({payload: {email, password}}) {
 
 export function* isUserLogedIn() {
     try {   
-        const res = yield axios.get('/auth');
+        const res = yield axios.get('https://cryptofy-react.herokuapp.com/auth');
   
         if (res.data.status === 'success') {
             const { user } = res.data.data;
@@ -114,7 +114,7 @@ export function* isUserLogedIn() {
 
 export function* userLogout() {
     try {
-        const res = yield axios.get('/logout');
+        const res = yield axios.get('https://cryptofy-react.herokuapp.com/logout');
         
         if (res.data.status === 'success') {
             window.location.reload(true)
@@ -162,7 +162,7 @@ export function* userTradeUpload({payload: {id, typeOfTrade, buyCurrency, buyAmo
             course = yield Object.values(courseData)[0].usd;
         }
 
-        const res = yield axios.put('/newTradeRecord', {
+        const res = yield axios.put('https://cryptofy-react.herokuapp.com/newTradeRecord', {
             id,
             typeOfTrade,
             buy: {
@@ -204,7 +204,7 @@ export function* userTradeUpload({payload: {id, typeOfTrade, buyCurrency, buyAmo
 
 export function* deleteUserTrade({ payload: { id, records }}) {
     try {
-        const res = yield axios.put('/deleteTrade', { 
+        const res = yield axios.put('https://cryptofy-react.herokuapp.com/deleteTrade', { 
             id,
             records
         });
@@ -267,7 +267,7 @@ export function* userTradeUpdate({payload: {id, objectID, typeOfTrade, buyCurren
             course = yield Object.values(courseData)[0].usd;
         }
 
-        const res = yield axios.put('/updateTrade', {
+        const res = yield axios.put('https://cryptofy-react.herokuapp.com/updateTrade', {
             id,
             objectID,
             typeOfTrade,
@@ -306,7 +306,7 @@ export function* userTradeUpdate({payload: {id, objectID, typeOfTrade, buyCurren
 export function* userTransactionUpload({ payload: { id, buyAmount, buyCourse, buyCurrency, buyDate, profit, sellCourse, sellDate, percentageCourseChange}}) {
     try {
 
-        const res = yield axios.put('/uploadTransaction', {
+        const res = yield axios.put('https://cryptofy-react.herokuapp.com/uploadTransaction', {
             id, 
             buyAmount,
             buyCourse,
@@ -340,7 +340,7 @@ export function* userTransactionUpload({ payload: { id, buyAmount, buyCourse, bu
 
 export function* userTransactionDelete({ payload: { id, records } }) {
     try {
-        const res = yield axios.put('/deleteTransaction', {
+        const res = yield axios.put('https://cryptofy-react.herokuapp.com/deleteTransaction', {
             id,
             records
         });
@@ -366,7 +366,7 @@ export function* userTransactionDelete({ payload: { id, records } }) {
 
 export function* userTransactionEdit({ payload: { id, objectID, buyAmount, buyCurrency, buyCourse, buyDate, sellCourse, profit, sellDate, percentageCourseChange }}) {
     try {   
-        const res = yield axios.put('/updateTransaction', {
+        const res = yield axios.put('https://cryptofy-react.herokuapp.com/updateTransaction', {
             id,
             objectID,
             buyCurrency,
@@ -399,7 +399,7 @@ export function* userTransactionEdit({ payload: { id, objectID, buyAmount, buyCu
 
 export function* userFuturesUpload({payload: {id, typeOfFuture, contract, profit, entry, laverage, date}}) {
     try {
-        const res = yield axios.put('/uploadFuture', {
+        const res = yield axios.put('https://cryptofy-react.herokuapp.com/uploadFuture', {
             id,
             typeOfFuture,
             contract,
@@ -428,7 +428,7 @@ export function* userFuturesUpload({payload: {id, typeOfFuture, contract, profit
 
 export function* userFutureDelete({payload: {id, records}}) {
     try {
-        const res = yield axios.put('/deleteFuture', { 
+        const res = yield axios.put('https://cryptofy-react.herokuapp.com/deleteFuture', { 
             id,
             records
         });
@@ -456,7 +456,7 @@ export function* userFutureDelete({payload: {id, records}}) {
 
 export function* userFutureEdit({ payload: { id, objectID, typeOfFuture, contract, profit, entry, laverage, date}}) {
     try {
-        const res = yield axios.put('/updateFuture', {
+        const res = yield axios.put('https://cryptofy-react.herokuapp.com/updateFuture', {
             id,
             objectID,
             typeOfFuture,
@@ -488,7 +488,7 @@ export function* userFutureEdit({ payload: { id, objectID, typeOfFuture, contrac
 
 export function* setTheme({payload: {id, theme}}) {
     try {
-        const res = yield axios.put('/setTheme', {
+        const res = yield axios.put('https://cryptofy-react.herokuapp.com/setTheme', {
             id,
             theme
         })

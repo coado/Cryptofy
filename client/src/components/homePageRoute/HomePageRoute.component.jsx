@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const HomePageRoute = ({component: Component, logedIn,  ...rest}) => (
     <Route {...rest} render={props => (
         logedIn ? 
-        <Redirect to='/dashboard'/>
+        <Redirect to='https://cryptofy-react.herokuapp.com/dashboard'/>
         : <Component {...props} />
     )} />
 );
