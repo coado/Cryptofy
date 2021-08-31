@@ -408,6 +408,8 @@ body {
     color: #ffffff; }
   .header-dark {
     color: #ffffff; }
+  .header-light {
+    color: #000000; }
   @media only screen and (max-width: 56.25em) {
     .header {
       margin-top: 2rem; } }

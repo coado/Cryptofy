@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path')
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const authController = require('./controllers/authController');
 const tradeController = require('./controllers/tradeController');
@@ -15,6 +16,7 @@ const app = express();
 app.use(express.json({limit: '10kb'}));
 app.use(express.urlencoded({extended: true, limit: '10kb'}));
 app.use(cookieParser());
+app.use(cors());
 
 
 app.post('/signup', authController.signUp);
