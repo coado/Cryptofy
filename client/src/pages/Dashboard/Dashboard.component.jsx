@@ -13,8 +13,6 @@ import PolarChart from '../../components/CryptoChart/PolarChart.component';
 
 const Dashboard = ({ theme, totalValue, profit, percentageWalletChange, chartData, wallet }) => {
 
-
-
     return (
         <div className={`dashboard-${theme} dashboard`}>
             <div className='dashboard__cardContainer'>

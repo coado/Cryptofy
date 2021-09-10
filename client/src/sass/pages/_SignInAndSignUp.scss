@@ -9,6 +9,11 @@
     //background-color: red;
     background-image: $space-background;
 
+    &__spinnerWrapper {
+        position: absolute;
+        top: -5rem;
+    }
+
     &__container {
         width: 40rem;
         height: 50rem;

@@ -1,14 +1,10 @@
-import React, { useEffect }  from 'react';
+import React, { useEffect, lazy, Suspense }  from 'react';
 import { connect } from 'react-redux';
 import {Route, Switch} from 'react-router-dom';
 
-import HomePage from './pages/HomePage/HomePage.component';
-import EnterCoinsPage from './pages/EnterCoinsPage/EnterCoinsPage.component';
-import SignInAndSignUpPage from './pages/SignInAndSignUpPage/SignInAndSignUpPage.component';
-import WalletTrackerPage from './pages/WalletTrackerPage/WalletTrackerPage.component';
-import Dashboard from './pages/Dashboard/Dashboard.component';
 import Version from './components/version/Version.component';
 
+import ErrorBoundary from './components/error-boundary/ErrorBoundary.component';
 import HeaderLogedIn from './components/header/HeaderLogedIn.component';
 import HeaderLogedOut from './components/header/HeaderLogedOut.component';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.component';
@@ -16,7 +12,14 @@ import HomePageRoute from './components/homePageRoute/HomePageRoute.component';
 import { isUserLogedIn, activeSpinnerLoader } from './redux/user/user.actions';
 import Spinner from './components/Spinner/Spinner';
 
-function App({ activeSpinnerLoader, spinnerLoader, theme, isUserLogedIn, logedIn }) {
+const HomePage = lazy(() => import('./pages/HomePage/HomePage.component'))
+const EnterCoinsPage = lazy(() => import('./pages/EnterCoinsPage/EnterCoinsPage.component'))
+const SignInAndSignUpPage = lazy(() => import('./pages/SignInAndSignUpPage/SignInAndSignUpPage.component'))
+const WalletTrackerPage = lazy(() => import('./pages/WalletTrackerPage/WalletTrackerPage.component'))
+const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard.component'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage.component'))
+
+function App({ activeSpinnerLoader, spinnerLoader, isUserLogedIn, logedIn, theme }) {
 
   // using sagas and redux, storing user in reducer.
   // on componentDidMount sending query to backand asking if user is actually
@@ -34,13 +37,18 @@ function App({ activeSpinnerLoader, spinnerLoader, theme, isUserLogedIn, logedIn
           {
             logedIn ? <HeaderLogedIn /> : <HeaderLogedOut />
           }
-          <Switch>
-            <HomePageRoute path='/' component={HomePage} exact  />
-            <PrivateRoute path='/enterCoins' component={EnterCoinsPage} exact/>
-            <PrivateRoute path='/dashboard' component={Dashboard} exact />
-            <PrivateRoute path='/wallet' component={WalletTrackerPage} exact />
-          <Route exact path='/signUpSignIn' component={SignInAndSignUpPage} />
-          </Switch>
+          <ErrorBoundary> 
+            <Suspense fallback={<div className={`suspense suspense__${theme}`}><Spinner theme={theme} /></div>}>
+              <Switch>
+                <HomePageRoute path='/' component={HomePage} exact  />
+                <PrivateRoute path='/enterCoins' component={EnterCoinsPage} exact/>
+                <PrivateRoute path='/dashboard' component={Dashboard} exact />
+                <PrivateRoute path='/wallet' component={WalletTrackerPage} exact />
+                <Route exact path='/signUpSignIn' component={SignInAndSignUpPage} />
+                <Route path='*' component={NotFoundPage}/>
+              </Switch>
+            </Suspense>
+          </ErrorBoundary> 
           <Version />
     </div>
   );
@@ -56,8 +64,8 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   logedIn: state.user.logedIn,
-  theme: state.user.theme,
-  spinnerLoader: state.user.spinnerLoader
+  spinnerLoader: state.user.spinnerLoader,
+  theme: state.user.theme
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

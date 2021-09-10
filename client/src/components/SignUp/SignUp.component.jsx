@@ -5,7 +5,7 @@ import { signUpUser } from '../../redux/user/user.actions';
 import Button from '../button/button.component';
 
 
-const SignUp = ({ signUpUser }) => {
+const SignUp = ({ signUpUser, setLoading }) => {
 
 
     const [data, setData] = useState({
@@ -24,6 +24,7 @@ const SignUp = ({ signUpUser }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading()
         signUpUser({
             email: data.email,
             password: data.password,

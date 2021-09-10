@@ -4,7 +4,7 @@ import { signInUser } from '../../redux/user/user.actions';
 import { connect } from 'react-redux';
 
 
-const SignIn = ({ signInUser }) => {
+const SignIn = ({ signInUser, setLoading }) => {
     const [data, setData] = useState({
         email: '',
         password: ''
@@ -19,7 +19,8 @@ const SignIn = ({ signInUser }) => {
     };
 
 const handleSubmit = (e) => {
-    e.preventDefault();
+        e.preventDefault();
+        setLoading()
         signInUser({
             email: data.email,
             password: data.password

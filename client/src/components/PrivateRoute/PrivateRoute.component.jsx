@@ -6,7 +6,7 @@ const PrivateRoute = ({component: Component, logedIn,  ...rest}) => (
     <Route {...rest} render={props => (
         logedIn ? 
         <Component {...props} />
-        : <Redirect to='https://cryptofy-react.herokuapp.com/signUpSignIn'/>
+        : <Redirect to='/signUpSignIn'/>
     )} />
 );
 

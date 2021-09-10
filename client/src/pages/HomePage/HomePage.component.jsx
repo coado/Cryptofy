@@ -1,5 +1,6 @@
 import React from 'react';
 import LineChart from '../../components/CryptoChart/LineChart.component';
+import { Link } from 'react-router-dom';
 
 import { ReactComponent as Icon1} from '../../svg/001.svg';
 import { ReactComponent as Icon2} from '../../svg/002.svg';
@@ -10,7 +11,7 @@ const HomePage = () => {
     
     let times = new Array(24).fill('')
 
-    let values = [0, 1, 2, 3, 4, 5, 5, 4, 6, 8, 9, 10, 15, 20, 15, 30, 35, 36, 40, 50, 60, 70, 80, 100]
+    let values = [0, 1, 2, 3, 4, 8, 10, 15, 30, 19, 10, 20, 40, 20, 45, 14, 15, 9, 12, 30, 40, 50, 60, 100]
     
     return (
     <div className='homepage'>
@@ -52,7 +53,7 @@ const HomePage = () => {
 
                 </div>
 
-                <button className='homepage__mainContent--button' > Sign up </button>
+                <Link to='/signUpSignIn' ><button className='homepage__mainContent--button' > Sign up </button></Link>
 
             </div>
             <div className='homepage__mainContent--chartContainer'>
