@@ -2,18 +2,19 @@ import React, { useEffect, lazy, Suspense }  from 'react';
 import { connect } from 'react-redux';
 import {Route, Switch} from 'react-router-dom';
 
-import Version from './components/version/Version.component';
-
-import ErrorBoundary from './components/error-boundary/ErrorBoundary.component';
-import HeaderLogedIn from './components/header/HeaderLogedIn.component';
-import HeaderLogedOut from './components/header/HeaderLogedOut.component';
+// COMPONENTS
+import Version from './components/Version/Version.component';
+import ErrorBoundary from './components/Error-boundary/ErrorBoundary.component';
+import HeaderLogedIn from './components/Header/HeaderLogedIn.component';
+import HeaderLogedOut from './components/Header/HeaderLogedOut.component';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.component';
 import HomePageRoute from './components/homePageRoute/HomePageRoute.component';
 import { isUserLogedIn, activeSpinnerLoader } from './redux/user/user.actions';
-import Spinner from './components/Spinner/Spinner';
-
+import Spinner from './components/Spinner/Spinner.component';
+import SuspensePage from './pages/SuspensePage/SuspensePage.component';
+// LAZY PAGES
 const HomePage = lazy(() => import('./pages/HomePage/HomePage.component'))
-const EnterCoinsPage = lazy(() => import('./pages/EnterCoinsPage/EnterCoinsPage.component'))
+const AddRecordPage = lazy(() => import('./pages/AddRecordPage/AddRecordPage'))
 const SignInAndSignUpPage = lazy(() => import('./pages/SignInAndSignUpPage/SignInAndSignUpPage.component'))
 const WalletTrackerPage = lazy(() => import('./pages/WalletTrackerPage/WalletTrackerPage.component'))
 const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard.component'))
@@ -38,10 +39,10 @@ function App({ activeSpinnerLoader, spinnerLoader, isUserLogedIn, logedIn, theme
             logedIn ? <HeaderLogedIn /> : <HeaderLogedOut />
           }
           <ErrorBoundary> 
-            <Suspense fallback={<div className={`suspense suspense__${theme}`}><Spinner theme={theme} /></div>}>
+            <Suspense fallback={<SuspensePage theme={theme} />}>
               <Switch>
                 <HomePageRoute path='/' component={HomePage} exact  />
-                <PrivateRoute path='/enterCoins' component={EnterCoinsPage} exact/>
+                <PrivateRoute path='/addRecord' component={AddRecordPage} exact/>
                 <PrivateRoute path='/dashboard' component={Dashboard} exact />
                 <PrivateRoute path='/wallet' component={WalletTrackerPage} exact />
                 <Route exact path='/signUpSignIn' component={SignInAndSignUpPage} />

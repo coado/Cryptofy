@@ -3,14 +3,17 @@ import axios from 'axios';
 import UserActionTypes from './user.types';
 import { signSuccess, 
          signFailure, 
-         unsetTableLoading, 
+         unsetTableLoading,
+         setTableLoading, 
          updateUserWallet, 
-         updateUserTransaction, 
-         unsetTransactionsTableLoading, 
+         updateUserSpot, 
+         unsetSpotTableLoading,
+         setSpotTableLoading, 
          updateUserFuture,
          unsetFuturesTableLoading,
+         setFuturesTableLoading,
          changeTheme,
-         disActiveSpinnerLoader 
+         disActiveSpinnerLoader
         } from './user.actions';
 import { setLoginLabel, setTradeLabel } from '../error/error.actions';
 import fetchingData from '../../utils/fetchingData';
@@ -303,7 +306,7 @@ export function* userTradeUpdate({payload: {id, objectID, typeOfTrade, buyCurren
     }
 };
 
-export function* userTransactionUpload({ payload: { id, buyAmount, buyCourse, buyCurrency, buyDate, profit, sellCourse, sellDate, percentageCourseChange}}) {
+export function* userSpotUpload({ payload: { id, buyAmount, buyCourse, buyCurrency, buyDate, profit, sellCourse, sellDate, percentageCourseChange}}) {
     try {
 
         const res = yield axios.put('/uploadTransaction', {
@@ -321,24 +324,24 @@ export function* userTransactionUpload({ payload: { id, buyAmount, buyCourse, bu
         if (res.data.status === 'success') {
             const { user } = res.data
             const transactionData = yield calculatingTransactionData(user.transactions);
-            yield put(updateUserTransaction({
+            yield put(updateUserSpot({
                  currentUser: res.data.user,
                  transactionData
              }));
 
-            yield put(unsetTransactionsTableLoading())
+            yield put(unsetSpotTableLoading())
         } else {
-            yield put(unsetTransactionsTableLoading())
+            yield put(unsetSpotTableLoading())
            }
 
 
     } catch(error) {
         console.log(error);
-        yield put(unsetTransactionsTableLoading());
+        yield put(unsetSpotTableLoading());
     }
 } 
 
-export function* userTransactionDelete({ payload: { id, records } }) {
+export function* userSpotDelete({ payload: { id, records } }) {
     try {
         const res = yield axios.put('/deleteTransaction', {
             id,
@@ -348,23 +351,23 @@ export function* userTransactionDelete({ payload: { id, records } }) {
         if (res.data.status === 'success') {
             const { user } = res.data
             const transactionData = yield calculatingTransactionData(user.transactions);
-            yield put(updateUserTransaction({
+            yield put(updateUserSpot({
                  currentUser: res.data.user,
                  transactionData
              }));
-            yield put(unsetTransactionsTableLoading())
+            yield put(unsetSpotTableLoading())
        } else {
-        yield put(unsetTransactionsTableLoading())
+        yield put(unsetSpotTableLoading())
        }
 
 
     } catch (error) {
         console.log(error);
-        yield put(unsetTransactionsTableLoading());
+        yield put(unsetSpotTableLoading());
     }
 }
 
-export function* userTransactionEdit({ payload: { id, objectID, buyAmount, buyCurrency, buyCourse, buyDate, sellCourse, profit, sellDate, percentageCourseChange }}) {
+export function* userSpotEdit({ payload: { id, objectID, buyAmount, buyCurrency, buyCourse, buyDate, sellCourse, profit, sellDate, percentageCourseChange }}) {
     try {   
         const res = yield axios.put('/updateTransaction', {
             id,
@@ -382,18 +385,18 @@ export function* userTransactionEdit({ payload: { id, objectID, buyAmount, buyCu
             const { user } = res.data
             const transactionData = yield calculatingTransactionData(user.transactions);
 
-            yield put(updateUserTransaction({
+            yield put(updateUserSpot({
                  currentUser: user,
                  transactionData
              }));
 
-            yield put(unsetTransactionsTableLoading())
+            yield put(unsetSpotTableLoading())
        } else {
-            yield put(unsetTransactionsTableLoading())
+            yield put(unsetSpotTableLoading())
        }
     } catch (error) {
         console.log(error);
-        yield put(unsetTransactionsTableLoading());
+        yield put(unsetSpotTableLoading());
     }
 }
 
@@ -504,6 +507,23 @@ export function* setTheme({payload: {id, theme}}) {
     }
 };
 
+export function* recalcData() {
+    try {
+        yield put(setTableLoading())
+        yield put(setSpotTableLoading())
+        yield put(setFuturesTableLoading())
+        yield isUserLogedIn()
+        yield put(unsetTableLoading())
+        yield put(unsetSpotTableLoading())
+        yield put(unsetFuturesTableLoading())
+    } catch(error) {
+        console.log(error);
+        yield put(unsetTableLoading())
+        yield put(unsetSpotTableLoading())
+        yield put(unsetFuturesTableLoading())
+    }
+}
+
 export function* onSignUp() {
     yield takeLatest(UserActionTypes.SIGN_UP_USER, signUp);
 };
@@ -538,15 +558,15 @@ export function* onUserTradeUpdate() {
 
 // TRANSACTIONS
 export function* onUserTransactionUpload() {
-    yield takeLatest(UserActionTypes.USER_TRANSACTION_UPLOAD, userTransactionUpload);
+    yield takeLatest(UserActionTypes.USER_SPOT_UPLOAD, userSpotUpload);
 };
 
 export function* onUserTransactionDelete() {
-    yield takeLatest(UserActionTypes.USER_TRANSACTION_DELETE, userTransactionDelete);
+    yield takeLatest(UserActionTypes.USER_SPOT_DELETE, userSpotDelete);
 };
 
 export function* onUserTransactionEdit() {
-    yield takeLatest(UserActionTypes.USER_TRANSACTION_EDIT, userTransactionEdit);
+    yield takeLatest(UserActionTypes.USER_SPOT_EDIT, userSpotEdit);
 };
 
 
@@ -567,6 +587,11 @@ export function* onSetTheme() {
     yield takeLatest(UserActionTypes.SET_THEME, setTheme);
 }
 
+// OTHERS
+export function* onRecalcData() {
+    yield takeLatest(UserActionTypes.RECALC_DATA, recalcData)
+}
+
 
 
 export function* userSagas() {
@@ -583,6 +608,7 @@ export function* userSagas() {
                 call(onUserFutureUpload),
                 call(onUserFutureDelete),
                 call(onUserFutureEdit),
-                call(onSetTheme)            
+                call(onSetTheme),
+                call(onRecalcData)            
             ]);
 };

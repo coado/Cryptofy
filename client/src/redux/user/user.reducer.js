@@ -13,7 +13,7 @@ const INITIAL_STATE = {
        
     },
     tableLoading: false,
-    transactionsTableLoading: false,
+    spotTableLoading: false,
     futuresTableLoading: false,
     logedIn: null,
     spinnerLoader: true,
@@ -59,7 +59,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                     ...action.payload.walletData
                 },
             }
-        case UserActionTypes.UPDATE_USER_TRANSACTION: 
+        case UserActionTypes.UPDATE_USER_SPOT: 
             return {
                 ...state,
                 currentUser: action.payload.currentUser,
@@ -86,15 +86,15 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 tableLoading: false
             }
 
-        case UserActionTypes.SET_TRANSACTIONS_TABLE_LOADING:
+        case UserActionTypes.SET_SPOT_TABLE_LOADING:
             return {
                 ...state,
-                transactionsTableLoading: true
+                spotTableLoading: true
             }
-        case UserActionTypes.UNSET_TRANSACTIONS_TABLE_LOADING:
+        case UserActionTypes.UNSET_SPOT_TABLE_LOADING:
             return {
                 ...state,
-                transactionsTableLoading: false
+                spotTableLoading: false
             }
         case UserActionTypes.SET_FUTURES_TABLE_LOADING:
             return {

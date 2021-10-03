@@ -56,25 +56,25 @@ export const updateUserWallet = data => ({
 
 
 
-// TRANSACTIONS
+// SPOT
 
-export const userTransactionUpload = data => ({
-    type: UserActionTypes.USER_TRANSACTION_UPLOAD,
+export const userSpotUpload = data => ({
+    type: UserActionTypes.USER_SPOT_UPLOAD,
     payload: data
 });
 
-export const userTransactionDelete = data => ({
-    type: UserActionTypes.USER_TRANSACTION_DELETE,
+export const userSpotDelete = data => ({
+    type: UserActionTypes.USER_SPOT_DELETE,
     payload: data
 });
 
-export const userTransactionEdit = data => ({
-    type: UserActionTypes.USER_TRANSACTION_EDIT,
+export const userSpotEdit = data => ({
+    type: UserActionTypes.USER_SPOT_EDIT,
     payload: data
 });
 
-export const updateUserTransaction = data => ({
-    type: UserActionTypes.UPDATE_USER_TRANSACTION,
+export const updateUserSpot = data => ({
+    type: UserActionTypes.UPDATE_USER_SPOT,
     payload: data
 });
 
@@ -103,12 +103,12 @@ export const updateUserFuture = data => ({
 
 // TABLES
 
-export const setTransactionsTableLoading = () => ({
-    type: UserActionTypes.SET_TRANSACTIONS_TABLE_LOADING
+export const setSpotTableLoading = () => ({
+    type: UserActionTypes.SET_SPOT_TABLE_LOADING
 });
 
-export const unsetTransactionsTableLoading = () => ({
-    type: UserActionTypes.UNSET_TRANSACTIONS_TABLE_LOADING
+export const unsetSpotTableLoading = () => ({
+    type: UserActionTypes.UNSET_SPOT_TABLE_LOADING
 });
 
 export const setTableLoading = () => ({
@@ -148,3 +148,8 @@ export const activeSpinnerLoader = () => ({
 export const disActiveSpinnerLoader = () => ({
     type: UserActionTypes.DISACTIVE_SPINNERLOADER
 });
+
+// OTHERS
+export const recalcData = () => ({
+    type: UserActionTypes.RECALC_DATA
+})

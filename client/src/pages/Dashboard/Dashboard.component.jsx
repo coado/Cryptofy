@@ -1,17 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
+// SVG's
 import { ReactComponent as ChartDown} from '../../svg/iconmonstr-chart-9.svg';
 import { ReactComponent as ChartUp} from '../../svg/iconmonstr-chart-6.svg';
 import { ReactComponent as Cash} from '../../svg/iconmonstr-banknote-15.svg';
 import { ReactComponent as Wallet} from '../../svg/wallet-outline.svg';
+import { ReactComponent as RefreshIcon} from '../../svg/refreshIcon.svg';
+// COMPONENTS
+import WalletTable from './WalletTable/WalletTable.component';
+import LineChart from '../../components/LineChart/LineChart.component';
+import PolarChart from '../../components/PolarChart/PolarChart.component';
+import Button from '../../components/Button/Button.component';
+// ACTIONS
+import { recalcData } from '../../redux/user/user.actions';
 
-import WalletTable from '../../components/DashboardComponents/WalletTable.component';
-import LineChart from '../../components/CryptoChart/LineChart.component';
-import PolarChart from '../../components/CryptoChart/PolarChart.component';
 
-
-const Dashboard = ({ theme, totalValue, profit, percentageWalletChange, chartData, wallet }) => {
+const Dashboard = ({ theme, totalValue, profit, percentageWalletChange, chartData, wallet, recalcData }) => {
 
     return (
         <div className={`dashboard-${theme} dashboard`}>
@@ -79,10 +84,17 @@ const Dashboard = ({ theme, totalValue, profit, percentageWalletChange, chartDat
             <div className='dashboard__walletAndChart'>
                 <div className='dashboard__wallet'>
                     <div className='dashboard__wallet--header'>
-                        <h1> WALLET </h1>
-                        <Wallet className='dashboard__wallet--wallet'/>
+                        <Link to='/addRecord' ><Button text='Add Trades' theme={theme} /></Link>
+                        <div className='dashboard__wallet--walletWrapper'>
+                            <h1> WALLET </h1>
+                            <Wallet className='dashboard__wallet--wallet'/>
+                        </div>
+                        <div onClick={recalcData} className='dashboard__wallet--recalcWrapper'>
+                            <RefreshIcon className='dashboard__wallet--recalcIcon' />
+                            <span className='dashboard__wallet--recalcSpan'> Recalculate data </span>
+                        </div>
                     </div>
-                    <WalletTable wallet={wallet} />
+                    <WalletTable theme={theme} wallet={wallet} />
                 </div>
                 <div className='dashboard__lineChart'>
                 {
@@ -119,6 +131,10 @@ const mapStateToProps = state => ({
     theme: state.user.theme
 });
 
+const mapDispatchToProps = dispatch => ({
+    recalcData: () => dispatch(recalcData())
+})
 
-export default connect(mapStateToProps)(Dashboard);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 

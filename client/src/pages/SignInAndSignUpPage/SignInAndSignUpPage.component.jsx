@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import Spinner from '../../components/Spinner/Spinner';
-import SignIn from '../../components/SignIn/SignIn.component';
-import SignUp from '../../components/SignUp/SignUp.component'
+import Spinner from '../../components/Spinner/Spinner.component';
+import SignIn from './SignIn/SignIn.component';
+import SignUp from './SignUp/SignUp.component'
 import Label from '../../components/Label/Label.component';
 
 const SignInAndSignUpPage = ({status, message}) => {
@@ -30,9 +30,11 @@ const SignInAndSignUpPage = ({status, message}) => {
         </div>
         :
         null
-    }
-        <SignIn setLoading={() => setLoading(true)} />
-        <SignUp setLoading={() => setLoading(true)} />
+    }   
+        <div className='sign__wrapper' >
+            <SignIn setLoading={() => setLoading(true)} />
+            <SignUp setLoading={() => setLoading(true)} />
+        </div>
     </div>
   
 )};

@@ -1,51 +1,53 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
 
+@import 'base/base';
 
-@import "abstracts/variables";
-@import "abstracts/mixins";
+///////////////////////////////////////////////////////////// COMPONENTS
 
-@import "base/base";
+@import '../components/Button/Button.styles.scss';
+@import '../components/AlertWindow/AlertWindow.styles.scss';
+@import '../components/LineChart/LineChart.styles.scss';
+@import '../components/PolarChart/PolarChart.styles.scss';
+@import '../components/Header/Header.styles.scss';
+@import '../components/Label/Label.styles.scss';
+@import '../components/Spinner/Spinner.styles.scss';
+@import '../components/Version/Version.styles.scss';
+@import '../components/Close/Close.styles.scss';
+@import '../components/TableHeader/TableHeader.styles.scss';
 
-@import "components/button.scss";
-@import "components/table.scss";
-@import "components/enterCoinsForm.scss";
-@import "components/enterCoinsEdit.scss";
-@import "components/label.scss";
-@import "components/spinner";
-@import "components/close.scss";
-@import "components/header";
-@import "components/lineChart";
-@import "components/polarChart";
-@import "components/alertWindow.scss";
-@import "components/cashProfitsForm";
-@import "components/version";
-@import "components/walletTrackerTransactionForm";
-@import "components/walletTrackerFuturesForm";
+///////////////////////////////////////////////////////////// PAGES
 
+// Error PagespotTable
+@import '../pages/ErrorPage/ErrorPage.styles.scss';
 
-@import "pages/EnterCoinsPage";
-@import "pages/ErrorPage";
-@import "pages/NotFoundPage";
-@import "pages/SignInAndSignUp";
-@import "pages/Dashboard";
-@import "pages/HomePage";
-@import "pages/WalletTrackerPage";
+// SignInAndSignUp Page
+@import '../pages/SignInAndSignUpPage/SignInAndSignUpPage.styles.scss';
 
+// WalletTrackerPage
+@import '../pages/WalletTrackerPage/WalletTrackerPage.styles.scss';
+@import '../pages/WalletTrackerPage/Futures/Form/FuturesForm.styles.scss';
+@import '../pages/WalletTrackerPage/Spot/Form/SpotForm.styles.scss';
+@import '../pages/WalletTrackerPage/StatisticCard/StatisticCard.styles.scss';
+@import '../pages/WalletTrackerPage/ChartContainer/ChartContainer.styles.scss';
+@import '../pages/WalletTrackerPage/StatsTable/StatsTable.styles.scss';
+@import '../pages/WalletTrackerPage/Futures/Table/FuturesTable.styles.scss';
+@import '../pages/WalletTrackerPage/Spot/Table/SpotTable.styles.scss';
 
-.suspense {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background: $space-background;
+// Add Record Page
+@import '../pages/AddRecordPage/AddRecordPage.styles.scss';
+@import '../pages/AddRecordPage/AddRecordForm/AddRecordForm.styles.scss';
+@import '../pages/AddRecordPage/EditRecordForm/EditRecordForm.styles.scss';
+@import '../pages/AddRecordPage/Table/Table.styles.scss';
 
-    &__dark {
-        background: $dark-background;
-    }
+// Dashboard
+@import '../pages/Dashboard/Dashboard.styles.scss';
 
-    &__matrix {
-        background: $matrix-background;
-    }
+// Homepage
+@import '../pages/HomePage/HomePage.styles.scss';
 
-    &__light {
-        background: $light-background;
-    }
-}
+// NotDoundPage
+@import '../pages/NotFoundPage/NotFoundPage.styles.scss';
+
+// Suspense page
+@import '../pages/SuspensePage/SuspensePage.styles.scss';

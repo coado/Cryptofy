@@ -30,7 +30,6 @@ const HeaderLogedIn = ({ activeSpinnerLoader, id, setTheme, theme, logout }) => 
             <div className='header__icon'>
             </div>
             <ul>
-                <li><Link to='/enterCoins'> ENTER COINS </Link></li>
                 <li><Link to='/dashboard'> DASHBOARD </Link></li>
                 <li><Link to='/wallet'> WALLET TRACKER </Link></li>
                 <li><Link onClick={logout} to='/'> LOGOUT </Link></li>
