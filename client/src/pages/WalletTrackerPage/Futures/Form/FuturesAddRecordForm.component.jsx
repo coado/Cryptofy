@@ -5,7 +5,7 @@ import { replaceComma, checkNumberField } from '../../../../utils/form.funtions'
 // ACTIONS
 import { userFutureUpload } from '../../../../redux/user/user.actions';
 // COMPONETNS
-import Button from '../../../../components/Button/Button.component';
+import Button from '../../../../components/button/Button.component';
 import Close from '../../../../components/Close/Close.component';
 
 const FuturesAddRecordForm = ({ theme, setWalletTrackerLabel, id, hideForm, userFutureUpload, setFuturesTableLoading }) => {

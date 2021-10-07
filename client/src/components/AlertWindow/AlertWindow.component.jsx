@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../Button/Button.component';
+import Button from '../button/Button.component';
 import { ReactComponent as Close} from '../../svg/close-outline.svg';
 
 const AlertWindow = ({ text, highlight, onClick, hideWindow }) => {

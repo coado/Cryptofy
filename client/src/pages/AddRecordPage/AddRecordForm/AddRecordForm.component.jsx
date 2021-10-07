@@ -6,7 +6,7 @@ import { userTradeUpload } from '../../../redux/user/user.actions';
 import { checkTradeType, sliceComment, replaceComma, checkNumberField } from '../../../utils/form.funtions';
 // COMPONENTS
 import Close from '../../../components/Close/Close.component';
-import Button from '../../../components/Button/Button.component';
+import Button from '../../../components/button/Button.component';
 import CurrenciesList from '../../../components/List/CurrenciesList.component';
 
 const AddRecordForm = ({ userTradeUpload, id, setHiddenUploadForm, setTradeLabel, setTableLoading }) => {

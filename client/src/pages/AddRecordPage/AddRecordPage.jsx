@@ -8,7 +8,7 @@ import Table from './Table/Table.component';
 import AddRecordForm from './AddRecordForm/AddRecordForm.component';
 import EditRecordForm from './EditRecordForm/EditRecordForm.component';
 // OTHER COMPONENTS
-import Button from '../../components/Button/Button.component';
+import Button from '../../components/button/Button.component';
 import AlertWindow from '../../components/AlertWindow/AlertWindow.component'
 import Label from '../../components/Label/Label.component';
 

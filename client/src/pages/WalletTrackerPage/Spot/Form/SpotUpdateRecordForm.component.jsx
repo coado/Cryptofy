@@ -5,7 +5,7 @@ import { replaceComma, checkNumberField, calculatePercentageCourseChange } from 
 // ACTIONS
 import { userSpotEdit } from '../../../../redux/user/user.actions';
 // COMPONENTS
-import Button from '../../../../components/Button/Button.component';
+import Button from '../../../../components/button/Button.component';
 import Close from '../../../../components/Close/Close.component';
 
 const SpotUpdateRecordForm  = ({ theme, setSpotTableLoading, setEditData, editData, setWalletTrackerLabel, hideForm, userSpotEdit }) => {

@@ -11,7 +11,7 @@ import { ReactComponent as RefreshIcon} from '../../svg/refreshIcon.svg';
 import WalletTable from './WalletTable/WalletTable.component';
 import LineChart from '../../components/LineChart/LineChart.component';
 import PolarChart from '../../components/PolarChart/PolarChart.component';
-import Button from '../../components/Button/Button.component';
+import Button from '../../components/button/Button.component';
 // ACTIONS
 import { recalcData } from '../../redux/user/user.actions';
 

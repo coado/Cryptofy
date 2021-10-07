@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import {Route, Switch} from 'react-router-dom';
 
 // COMPONENTS
-import Version from './components/Version/Version.component';
-import ErrorBoundary from './components/Error-boundary/ErrorBoundary.component';
-import HeaderLogedIn from './components/Header/HeaderLogedIn.component';
-import HeaderLogedOut from './components/Header/HeaderLogedOut.component';
+import Version from './components/version/Version.component';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary.component';
+import HeaderLogedIn from './components/header/HeaderLogedIn.component';
+import HeaderLogedOut from './components/header/HeaderLogedOut.component';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.component';
 import HomePageRoute from './components/homePageRoute/HomePageRoute.component';
 import { isUserLogedIn, activeSpinnerLoader } from './redux/user/user.actions';

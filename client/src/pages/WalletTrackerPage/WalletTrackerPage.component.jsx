@@ -14,7 +14,7 @@ import FuturesUpdateRecordForm from './Futures/Form/FuturesUpdateRecordForm.comp
 import StatsTable from './StatsTable/StatsTable.component'; 
 
 import ChartContainer from './ChartContainer/ChartContainer.component';
-import Button from '../../components/Button/Button.component';
+import Button from '../../components/button/Button.component';
 import Label from '../../components/Label/Label.component';
 import StatisticCard from './StatisticCard/StatisticCard.component';
 import { setWalletTrackerLabel } from '../../redux/error/error.actions';
